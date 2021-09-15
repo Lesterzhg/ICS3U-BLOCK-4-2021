@@ -1,0 +1,168 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch hw11simpflications",
+            "request": "launch",
+            "mainClass": "week2.hw11simpflications",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw10root",
+            "request": "launch",
+            "mainClass": "week2.hw10root",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw4velocity",
+            "request": "launch",
+            "mainClass": "week2.hw4velocity",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw3percent",
+            "request": "launch",
+            "mainClass": "week2.hw3percent",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw1square",
+            "request": "launch",
+            "mainClass": "week2.hw1square",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw3numbers",
+            "request": "launch",
+            "mainClass": "week2.hw3numbers",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw1decimal",
+            "request": "launch",
+            "mainClass": "week2.hw1decimal",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw7equation",
+            "request": "launch",
+            "mainClass": "week2.hw7equation",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw6sphere",
+            "request": "launch",
+            "mainClass": "week2.hw6sphere",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw5change",
+            "request": "launch",
+            "mainClass": "week2.hw5change",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw4slope",
+            "request": "launch",
+            "mainClass": "week2.hw4slope",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw3equation",
+            "request": "launch",
+            "mainClass": "week2.hw3equation",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw1circle",
+            "request": "launch",
+            "mainClass": "week2.hw1circle",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch hw2sphere",
+            "request": "launch",
+            "mainClass": "week2.hw2sphere",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch circle",
+            "request": "launch",
+            "mainClass": "week2.circle",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch ModulusExample",
+            "request": "launch",
+            "mainClass": "week2.ModulusExample",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch ExampleSix",
+            "request": "launch",
+            "mainClass": "week1.ExampleSix",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch ExampleFive",
+            "request": "launch",
+            "mainClass": "week1.ExampleFive",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch ExampleFour",
+            "request": "launch",
+            "mainClass": "week1.ExampleFour",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch ExampleOne",
+            "request": "launch",
+            "mainClass": "week1.ExampleOne",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch ExampleThree",
+            "request": "launch",
+            "mainClass": "week1.ExampleThree",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        },
+        {
+            "type": "java",
+            "name": "Launch HelloWorld",
+            "request": "launch",
+            "mainClass": "week1.HelloWorld",
+            "projectName": "Unit 1 Intro to Computer Science_5cbae61"
+        }
+    ]
+}
