@@ -1,0 +1,254 @@
+package week7;
+import java.util.Scanner;
+
+public class CrazyEights {
+   private static final int NUM_SUITS = 4, CARDS_PER_SUIT = 13;
+   private static final String HEARTS = "H", DIAMONDS = "D", CLUBS = "C", SPADES = "S", ACE = "A", JACK = "J",
+         QUEEN = "Q", KING = "K";
+   public static void main(String[] args) {
+
+      Scanner in = new Scanner(System.in);
+
+         String temp = cards(in); // starts game and returns scores
+         int one = Integer.parseInt(temp.substring(0, temp.indexOf(" "))); //player
+         int two = Integer.parseInt(temp.substring(temp.indexOf(" "), temp.lastIndexOf(" "))); //pc1
+         int three = Integer.parseInt(temp.substring(temp.lastIndexOf(" "))); //pc2
+         if (one<two&&one<three)
+            System.out.println("You Won!"); //Tells who won
+         else if (two<one&&two<three)
+            System.out.println("Player Two Won!");
+         else if (three<one&&three<two)
+            System.out.println("Player Three Won!");
+         else if (one==two)
+            System.out.println("You Tied With Player Two!");
+         else if (two==three)
+            System.out.println("Players Two And Three Tied!");
+         else if (one==three)
+            System.out.println("You Tied With Player Three!");
+
+   }
+
+   private static String cards(Scanner in) { // distributes hands
+      String hand="",hand1="",hand2="",first=getCard();
+      for (int i = 0; i < 5; i++) {
+         hand+= getCard()+ " ";
+         hand1+= getCard()+ " ";
+         hand2+= getCard()+ " ";
+      }
+      System.out.println("Player Two hand:XX XX XX XX XX");
+      System.out.println("Player Three hand: XX XX XX XX XX");
+      System.out.println("Player hand: "+hand);
+      return start(hand, hand1, hand2, first, in);
+   }
+
+   private static String start(String pHand, String cHand1, String cHand2, String first, Scanner in) { //playing game
+      String tmp = "";
+      while(cHand1!=""&&cHand2!=""&&pHand!=""){
+         tmp = cPlay(cHand2, first, in, pHand, cHand1);//calls the plays for each pleyer and sets the new top/first
+         cHand2 = tmp.substring(0,tmp.indexOf("-"));
+         first = tmp.substring(tmp.indexOf("-")+1);
+         tmp = cPlay(cHand1, first, in, pHand, cHand2);
+         cHand1 = tmp.substring(0,tmp.indexOf("-")); 
+         first=tmp.substring(tmp.indexOf("-")+1);
+         tmp = play(pHand, first, in);
+         pHand = tmp.substring(0,tmp.indexOf("-")); 
+         first=tmp.substring(tmp.indexOf("-")+1);
+      }
+      int c2s = getScore(cHand2);
+      int c1s = getScore(cHand1);
+      int ps = getScore(pHand);  
+      return c2s+" "+c1s+" "+ps; //returns all scores
+   }
+
+   private static int getScore(String hand) {
+      int sc=0; // goes through hand and check which cards are present, adds scores accordingly
+      int i=0;
+      while (i<hand.length()){
+         if(hand.trim().substring(i,hand.indexOf(" ",i)-1).equals("8"))
+            sc+=50;
+         else if(hand.trim().substring(i,hand.indexOf(" ",i)-1).equals("K")||hand.trim().substring(i,hand.indexOf(" ",i)-1).equals("Q")||hand.trim().substring(i,hand.trim().indexOf(" ",i)-1).equals("Q"))
+            sc+=10;
+         else if(hand.trim().substring(i,hand.indexOf(" ",i)-1).equals("A"))
+            sc+=1;
+         else 
+            sc+=Integer.parseInt(hand.trim().substring(i,hand.indexOf(" ",i)-1));
+         if((hand.trim().substring(i,hand.indexOf(" ",i)-1).equals("10")))
+            i+=3;
+         else
+            i+=2;
+      }
+      return sc;
+   }
+
+   private static boolean check(String hand, String first){ //checks for playable cards
+
+         if(hand.indexOf(first.substring(0,first.length()-1))!=-1||hand.indexOf(first.substring(first.length()-1))!=-1||hand.indexOf("8")!=-1){
+            return true;
+         }else{
+            return false;
+      }
+   }
+
+   private static String cPlay(String hand, String first, Scanner in, String pHand, String cHand) { // It plays for the computer
+      int count = 0;
+      String rank = first.substring(0,first.length()-1);
+      String suit = first.substring(first.length()-1), card="";
+      hand=hand.trim()+" ";
+      while (!check(hand,first)&&count<5){
+         hand+=getCard()+" "; //picks up if cannot play
+         count++;
+      }
+      if (check(hand, first)){//checks if playable
+         if (pHand.length()<=3||cHand.length()<=3){ //checks amount of cards left
+            count = 0;
+            while (hand.indexOf(rank,count)!=-1){
+               count = hand.indexOf(rank, count);
+               card = hand.substring(count, hand.indexOf(" ", count));
+               String cardSuit = card.substring(card.length()-1);
+               if (!cardSuit.equals(first.substring(first.length()-1))){
+                  return (hand.replaceFirst(card+" ","").trim()+"-"+card).replace("  "," ");
+               }
+               count++;
+         }
+         if(hand.indexOf("8")!=-1){ 
+            while(!suit.equals(first.substring(first.length()-1))){//checks if player has 8 and if has none of same suit and replaces if it does
+            suit=getSuit();
+            }
+            return (hand.replaceFirst(card+" ","")+"-8"+suit).replace("  "," ");
+         }
+      }
+         if(hand.indexOf(suit)!=-1){  //checks if player has card of same suit and plays
+            count = 0;
+            while(hand.indexOf(suit, count)!=-1){
+               count = hand.indexOf(suit,count);
+               card = hand.substring(hand.lastIndexOf(" ", count)+1, hand.indexOf(" ", count));
+            if(card.indexOf("8")==-1){
+                  return (hand.replaceFirst(card+" ","").trim()+"-"+card).replace("  "," ");
+               }
+               count++;
+            }
+      }
+         if(hand.indexOf(rank)!=-1){ //check if player has card of same num and plays
+               count = 0;
+               while (hand.indexOf(rank,count)!=-1){
+                  count = hand.indexOf(rank, count);
+                  card = hand.substring(count, hand.indexOf(" ", count));
+               if (card.indexOf("8")==-1){
+                  return (hand.replaceFirst(card+" ","").trim()+"-"+card).replace("  "," ");
+               }
+            }
+         } if(hand.indexOf("8")!=-1){ //check if player has 8 and alters if does
+            card=hand.substring(hand.indexOf("8"),hand.indexOf("8")+2);
+            hand=hand.replaceFirst(card,"").trim();
+            suit=handCount(hand);
+            return (hand+"-"+"8"+suit).replace("  "," ");
+         }
+      }else{
+         System.out.println("Computer could not play.");
+      }
+         return (hand+"-"+first).replace("  "," ");
+   }
+   
+   private static String handCount(String hand){ //counts and highest house in hand
+      int hc=0, cc=0, sc=0, dc=0;
+      for (int i=0; i<hand.length(); i++){
+         if (hand.substring(i,i+1)==HEARTS)
+            hc++;
+         else if (hand.substring(i,i+1)==CLUBS)
+            cc++;
+         else if (hand.substring(i,i+1)==SPADES)
+            sc++;
+         else if (hand.substring(i,i+1)==DIAMONDS)
+            dc++;
+      }
+      if(hc>cc&&hc>sc&&hc>dc)
+         return DIAMONDS;
+      else if(cc>hc&&cc>sc&&cc>dc)
+         return CLUBS;
+      else if(hc>cc&&hc>dc&&hc>sc)
+         return HEARTS;
+      else if(sc>dc&&sc>cc&&sc>hc)
+         return SPADES;
+      else
+         return DIAMONDS;
+   }
+
+   private static String play(String hand, String first, Scanner in){
+      hand = hand.trim()+" ";
+      int count = 0;
+      String rank = first.substring(0,first.length()-1), suit = first.substring(first.length()-1), card="";
+      Boolean notValid = true;
+      while (!check(hand,first)&&count<5){ //picks up if cannot play
+         hand+=getCard()+" ";
+         count++;
+      }
+      if (check(hand, first)) { //asks player which card they want to play and plays it
+         while(notValid){
+            System.out.println("Which card would you like to play?");
+            System.out.println("Current top card: "+first);
+            System.out.println("Player Deck: "+hand);
+            card = in.nextLine().toUpperCase();
+            if (hand.indexOf(card)!=-1&&card.indexOf(" ")==-1&&(card.indexOf("8")!=-1||card.indexOf(suit)!=-1||card.indexOf(rank)!=-1)){//checks if playable
+            notValid = false;
+         } else {
+         System.out.println("Invalid Input");
+         }
+      }
+
+      if (card.indexOf("8")!=-1){ // checks if they play and 8 and gives option to change house
+         notValid = true;
+         while (notValid){
+         System.out.println("What do you want to change the suit to?");
+         suit = in.nextLine().toUpperCase();
+         if (suit.equals("S")||suit.equals("H")||suit.equals("C")||suit.equals("D")){
+            rank = hand.replaceFirst(card,"").trim()+"-8"+suit;
+            return rank.replace("  "," ");
+         }else{
+            System.out.println("Invalid Input");
+         }
+      }
+   }else{
+      rank = hand.replaceFirst(card,"").trim()+"-"+card;
+      return rank.replace("  "," ");
+   }
+}else{  // ends turn bc too many pick ups
+   System.out.println("You could not play");
+   rank = hand.replaceFirst(card,"").trim()+"-"+card;
+   return rank.replace("  "," ");
+}
+   return hand+"-"+first;
+}
+
+   private static String getCard() {
+      String card = getFace() + getSuit(); // generates a card
+      return card;
+   }
+
+   private static String getSuit() {
+      int suit = (int) (Math.random() * NUM_SUITS); // generates a random suit
+
+      if (suit == 0)
+         return HEARTS;
+      else if (suit == 1)
+         return DIAMONDS;
+      else if (suit == 2)
+         return CLUBS;
+      else
+         return SPADES;
+
+   }
+
+   private static String getFace() {
+      int suit = (int) (Math.random() * CARDS_PER_SUIT); // generates a random face
+      if (suit >= 2 && suit <= 10)
+         return suit + "";
+      else if (suit == 1)
+         return ACE;
+      else if (suit == 11)
+         return JACK;
+      else if (suit == 12)
+         return QUEEN;
+      else
+         return KING;
+
+   }}
